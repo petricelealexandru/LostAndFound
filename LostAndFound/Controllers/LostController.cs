@@ -2,7 +2,7 @@
 
 namespace LostAndFound.Controllers
 {
-    public class HomeController : Controller
+    public class LostController : Controller
     {
         public IActionResult Index()
         {

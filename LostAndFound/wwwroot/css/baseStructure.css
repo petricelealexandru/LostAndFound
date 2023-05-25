@@ -1,0 +1,13 @@
+﻿body {
+    background-color: #2B3138;
+}
+
+.content {
+    max-width: 1280px;
+    border: 1px solid red;
+    margin: auto;
+}
+
+.body-class {
+    min-height: 80vh;
+}
