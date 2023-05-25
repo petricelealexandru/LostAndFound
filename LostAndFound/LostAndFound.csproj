@@ -7,4 +7,8 @@
     <PackAsTool>True</PackAsTool>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LostAndFound.Logic\LostAndFound.Logic.csproj" />
+  </ItemGroup>
+
 </Project>
