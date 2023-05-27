@@ -4,10 +4,112 @@
 
 .content {
     max-width: 1280px;
-    border: 1px solid red;
+   /* border: 1px solid red;*/
     margin: auto;
 }
 
 .body-class {
     min-height: 80vh;
 }
+
+.navigation {
+    background-color: green;
+    height: 80px;
+    background-color: #2B3138;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 100px 0 100px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 9;
+    padding-top:20px;
+}
+
+navigation-left {
+    position: relative;
+}
+
+.navigation-right
+{
+  
+}
+
+.logo {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+}
+
+
+.nav-item {
+    height: 80px;
+    width: 80px;
+    align-items: center;
+    background-color: #2B3138;
+    color: #CC633B;
+    border: none;
+    font-style: border;
+    cursor: pointer;
+    font-size: 22px;
+    margin-left: 30px;
+   text-decoration: none;
+}
+
+
+
+.footer {
+    height: 170px;
+    background-color: #2B3138;
+    padding-left: 100px;
+    padding-right: 15px;
+    padding-top: 30px;
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.email-subscribe {
+    padding-top: 26px;
+}
+
+.input-email {
+    height: 27px;
+    width: 307px;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+}
+
+::placeholder {
+    opacity: 0.5;
+}
+
+.text-footer {
+    height: 27px;
+    width: 453px;
+    color: white;
+    font-size: 23px;
+}
+
+.subcribe-button {
+    height: 42px;
+    width: 122px;
+    margin-left: 20px;
+    background-color: #CC633B;
+    color: white;
+    border: none;
+    border-radius: 4%;
+    cursor: pointer;
+}
+
+  .subcribe-button:hover {
+        background-color: #892F0D;
+    }
