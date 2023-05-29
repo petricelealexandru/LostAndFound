@@ -1,0 +1,77 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+}
+
+.listing-container {
+    background-color: #2B3138;
+    height: 100hv;
+}
+
+.formular {
+    height: 700px;
+    width: 1150px;
+    background-color: #202329;
+    border-radius: 18px;
+    padding: 10px 30px 10px 50px;
+    overflow-y: scroll;
+}
+
+.title 
+{
+    font-size: 24px;
+    color: white;
+    text-align: left;
+    align-content: baseline;
+    margin-bottom:20px;
+}
+
+
+tabel 
+{
+    width: 120px;
+    margin-top: 30px;
+}
+
+
+
+tabel, th, td {
+    padding: 10px 0 10px 0;
+}
+
+td
+{
+    color: white;
+    text-align:center;
+    
+}
+
+th {
+    align-items: center;
+    width: 100px;
+    font-size: 14px;
+    background-color: #64696F;
+    color: white;
+    text-align: center;
+}
+
+.preview
+{
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+tr:nth-child(even) td {
+    background-color: #2B3138;
+}
+
+tr: nth-child(odd) td 
+{
+    background-color: #202329;
+}
+
+
