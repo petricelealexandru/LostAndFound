@@ -8,7 +8,6 @@
 }
 
 .body-class {
-    min-height: 80vh;
 }
 
 .navigation {
@@ -114,7 +113,7 @@ navigation-left {
     }
 
 /* The Modal (background) */
-.modal {
+.custom-modal {
     display: none; /* Hidden by default */
     position: fixed;  /* Stay in place */
     z-index: 10; /* Sit on top */
