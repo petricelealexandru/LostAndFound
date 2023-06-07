@@ -8,12 +8,6 @@ namespace LostAndFound.Controllers
     [Route("api/[controller]")]
     public class ItemController : ControllerBase
     {
-        [HttpPost]
-        [Route("[action]")]
-        public virtual ActionResult CreateItem([FromBody] ItemCreateModel model)
-        {
-            var response = ItemCore.CreateItem(model);
-            return Ok(response);
-        }
+       
     }
 }

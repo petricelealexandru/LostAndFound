@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace LostAndFound.Database.Data
+namespace LostAndFound.Database
 {
     public partial class LostAndFoundContext : DbContext
     {

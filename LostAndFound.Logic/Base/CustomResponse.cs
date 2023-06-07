@@ -6,7 +6,7 @@
         public object Data { get; set; }
         public int StatusCode { get; set; }
 
-        public CustomResponse(bool status, object data, int statusCode)
+        public CustomResponse (bool status, object data, int statusCode) 
         {
             Status = status;
             Data = data;

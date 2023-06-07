@@ -1,5 +1,4 @@
-﻿using LostAndFound.Database.Context;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 
 namespace LostAndFound.Database.Base
 {

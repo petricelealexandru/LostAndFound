@@ -7,28 +7,21 @@ namespace LostAndFound.Logic.Core
 {
     public class ItemCore
     {
-        public static CustomResponse CreateItem(ItemCreateModel model)
+        public static DatabaseModel.Item CreateItem(ItemCreateModel model, IRepository<DatabaseModel.Item> itemRepo)
         {
-            using (var unitOfWork = new RepoUnitOfWork(beginTransaction: true))
-            using (var itemRepo = unitOfWork.Repository<DatabaseModel.Item>())
+            var itemDAL = new DatabaseModel.Item()
             {
-                var itemDAL = new DatabaseModel.Item()
-                {
-                    Id = Guid.NewGuid(),
-                    TypeId = model.TypeId,
-                    CreatedAt = DateTime.Now,
-                };
+                Id = Guid.NewGuid(),
+                ItemTypeId = model.ItemTypeId,
+                Address = model.Address,
+                CityId = model.CityId,
+                CountyId = model.CountyId,
+                Color = model.Color,
+                //to do add other fileds
+            };
 
-                itemDAL = itemRepo.Create(itemDAL);
-                if (itemDAL == null)
-                {
-                    unitOfWork.RollbackTransaction();
-                    return CustomResponse.Error();
-                }
-
-                unitOfWork.CommitTransaction();
-                return CustomResponse.Success(itemDAL);
-            }
+            itemDAL = itemRepo.Create(itemDAL);
+            return itemDAL;
         }
     }
 }
