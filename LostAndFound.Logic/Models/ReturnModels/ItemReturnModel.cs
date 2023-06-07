@@ -1,10 +1,10 @@
 ﻿namespace LostAndFound.Logic.Models.PostModels
 {
-    public class ItemCreateModel
+    public class ItemReturnModel
     {
-        public Guid ItemTypeId { get; set; }
-        public Guid CityId { get; set; }
-        public Guid CountyId { get; set; }
+        public string ItemType { get; set; }
+        public string City { get; set; }
+        public string County { get; set; }
         public string Color { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }

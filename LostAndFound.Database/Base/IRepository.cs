@@ -4,7 +4,7 @@ namespace LostAndFound.Database.Base
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : class
     {
-        IQueryable<TEntity> GetListQuery(Expression<Func<TEntity, bool>> expression);
+        IQueryable<TEntity> GetListQuery(Expression<Func<TEntity, bool>>? expression = null);
         TEntity Create(TEntity entity);
         TEntity Update(TEntity entity);
         TEntity Delete(TEntity entity);

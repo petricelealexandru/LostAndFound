@@ -18,5 +18,13 @@ namespace LostAndFound.Controllers
             var response = LostItemCore.CreateLostItem(model);
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public virtual ActionResult GetLostItems()
+        {
+            var response = LostItemCore.GetLostItems();
+            return Ok(response);
+        }
     }
 }

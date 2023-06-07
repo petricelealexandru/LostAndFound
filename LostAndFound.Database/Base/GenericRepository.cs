@@ -71,7 +71,7 @@ namespace LostAndFound.Database.Base
             return query.FirstOrDefault();
         }
 
-        public IQueryable<TEntity> GetListQuery(Expression<Func<TEntity, bool>> expression)
+        public IQueryable<TEntity> GetListQuery(Expression<Func<TEntity, bool>>? expression)
         {
             return _context.Set<TEntity>().Where(expression);
         }
