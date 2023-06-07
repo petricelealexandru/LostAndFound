@@ -1,11 +1,10 @@
 ﻿using System;
 using LostAndFound.Database.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace LostAndFound.Database
+namespace LostAndFound.Database.Context
 {
     public partial class LostAndFoundContext : DbContext
     {

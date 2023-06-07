@@ -20,8 +20,8 @@ namespace LostAndFound.Database.Models
         public string Description { get; set; }
         public string ContactNumber { get; set; }
         public string ContactEmail { get; set; }
-        public bool Reward { get; set; }
-        public double Cost { get; set; }
+        public bool? Reward { get; set; }
+        public double? Cost { get; set; }
 
         public virtual City City { get; set; }
         public virtual County County { get; set; }
