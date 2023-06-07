@@ -26,4 +26,4 @@ app.MapControllerRoute(
 
 app.Run();
 
-//Scaffold - DbContext "Server=127.0.0.1,1433;Database=LostAndFound;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer - OutputDir Data
+//Scaffold-DbContext "Server=127.0.0.1,1433;Database=LostAndFound;User ID=sa;Password=master" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data

@@ -2,15 +2,15 @@
 
 namespace LostAndFound.Database.Models
 {
-    public partial class ItemType
+    public partial class City
     {
-        public ItemType()
+        public City()
         {
             Items = new HashSet<Item>();
         }
 
         public Guid Id { get; set; }
-        public string Type { get; set; }
+        public string Name { get; set; }
 
         public virtual ICollection<Item> Items { get; set; }
     }
