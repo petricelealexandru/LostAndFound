@@ -14,7 +14,7 @@
     <link href="~/css/listing-page.css" rel="stylesheet" />
     <link href="~/css/match-page.css" rel="stylesheet" />
 
-    
+
 </head>
 <body>
     <header class="content">
@@ -28,21 +28,60 @@
     <footer class="content">
         @await Html.PartialAsync("~/Views/Shared/_Footer.cshtml")
     </footer>
-    
+
     <!-- The Modal -->
     <div id="myModal" class="custom-modal">
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="custom-modal-content">
             <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+            <p>Details</p>
+            <div>
+                <label for="category" class="labels">Category : </label>
+                <label for="category" class="label-information">Animal</label>
+            </div>
+            <div>
+                <label for="color" class="labels">Color : </label>
+                <label for="color" class="label-information">Black</label>
+            </div>
+            <div>
+                <label for="dateandtime" class="labels">Date and time : </label>
+                <label for="dateandtime" class="label-information">20.05.2023 13:00</label>
+            </div>
+            <div>
+                <label for="county" class="labels">County : </label>
+                <label for="county" class="label-information">Timis</label>
+            </div>
+            <div>
+                <label for="city" class="labels">City : </label>
+                <label for="city" class="label-information">Timisoara</label>
+            </div>
+            <div>
+                <label for="adress" class="labels">Adress : </label>
+                <label for="adress" class="label-information">Aleea Studentilor</label>
+            </div>
+            <div>
+                <label for="contact" class="labels">Contact : </label>
+                <label for="contact" class="label-information">0741580592</label>
+            </div>
+            <div>
+                <label for="email" class="labels">Email : </label>
+                <label for="email" class="label-information">alexandrapetricele21@yahoo.com </label>
+            </div>
+            <div>
+                <label for="description" class="labels">Description : </label>
+                <label for="description" class="label-information">Am pierdut un telefon iphone x Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </label>
+            </div>
+            <img src="~/img/rectangle 27.png" class="add-image" />
+
+          <input type="button" value="Found" class="modal-found" />
+        
         </div>
-    </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/ajaxhelper.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/ajaxhelper.js"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

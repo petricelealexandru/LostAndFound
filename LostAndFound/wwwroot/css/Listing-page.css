@@ -28,24 +28,19 @@ body {
     background-color: none;
 }
 
-
 tabel 
 {
     width: 120px;
     margin-top: 30px;
 }
 
-
-
 tabel, th, td {
     padding: 10px 0 10px 0;
 }
 
-td
-{
+td {
     color: white;
     text-align:center;
-    
 }
 
 th {
@@ -63,8 +58,7 @@ tr:nth-child(even) td {
     background-color: #2B3138;
 }
 
-tr: nth-child(odd) td 
-{
+tr: nth-child(odd) td {
     background-color: #202329;
 }
 

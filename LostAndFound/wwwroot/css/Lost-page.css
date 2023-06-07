@@ -90,9 +90,9 @@ body {
     cursor: pointer;
 }
 
-    .send-button:hover {
-        background-color: #B25800;
-    }
+.send-button:hover {
+    background-color: #B25800;
+}
 
 .checkbox {
     cursor: pointer;

@@ -115,32 +115,34 @@ navigation-left {
 /* The Modal (background) */
 .custom-modal {
     display: none; /* Hidden by default */
-    position: fixed;  /* Stay in place */
+    position: fixed; /* Stay in place */
     z-index: 10; /* Sit on top */
     top: 0;
     right: 0;
-    width: 500px; /* Full width */
+    width: 100%; /* Full width */
     height: 100vh; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    border: 2px solid red;
+    background-color: rgba(0,0,0,0.7);
 }
 
 /* Modal Content/Box */
-.modal-content 
-{
-    background-color: #fefefe;
+.custom-modal-content {
+    background-color: #202329;
     padding: 20px;
+    height: 100vh;
+    width: 500px;
+    float: right;
+    position: relative;
+    overflow-y: scroll;
 }
 
 /* The Close Button */
-.close 
-{
-    color: #aaa;
+.close {
+    color: #CC633B;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    position: absolute;
+    right: 40px;
 }
 
     .close:hover,
@@ -158,3 +160,37 @@ navigation-left {
 
 
     }
+
+p {
+    top: 0;
+   font-size:20px;
+    color: white;
+    text-align:center;
+}
+
+.labels {
+    color: #CC633B;
+}
+
+.label-information
+{
+    color:white;
+}
+
+.add-image
+{
+    padding-top: 20px;
+}
+
+.modal-found {
+    height: 42px;
+    width: 122px;
+    margin-left: 20px;
+    background-color: #CC633B;
+    color: white;
+    border: none;
+    border-radius: 4%;
+    right: 20px;
+    position: absolute;
+    bottom: 10px;
+}
