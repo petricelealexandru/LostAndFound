@@ -139,10 +139,11 @@ navigation-left {
 .close {
     color: #CC633B;
     float: right;
-    font-size: 28px;
+    font-size: 35px;
     font-weight: bold;
     position: absolute;
     right: 40px;
+    top: 0px;
 }
 
     .close:hover,
@@ -163,7 +164,7 @@ navigation-left {
 
 p {
     top: 0;
-   font-size:20px;
+     font-size:30px;
     color: white;
     text-align:center;
 }
@@ -192,5 +193,18 @@ p {
     border-radius: 4%;
     right: 20px;
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
+}
+
+
+.message-found {
+
+    background-color: #2B3138;
+    height: 35px;
+    width: 180px;
+    border: none;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 30px;
+    padding-left: 10px;
 }

@@ -57,8 +57,9 @@ body {
     background-color: #2B3138;
 }
 
-.input-cost {
-    width: 126px;
+.input-cost 
+{
+    width: 188px;
     margin-bottom: 20px;
     border: none;
     border-bottom: 1px solid #2B3138;
@@ -96,4 +97,7 @@ body {
 
 .checkbox {
     cursor: pointer;
+    margin-left: 0;
 }
+
+

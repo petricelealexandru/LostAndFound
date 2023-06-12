@@ -17,7 +17,11 @@ namespace LostAndFound.Logic.Core
                 CityId = model.CityId,
                 CountyId = model.CountyId,
                 Color = model.Color,
-                //to do add other fileds
+                Description =model.Description,
+                ContactNumber = model.ContactNumber,
+                ContactEmail = model.ContactEmail,
+                Reward = model.Reward,
+                Cost = model.Cost
             };
 
             itemDAL = itemRepo.Create(itemDAL);
