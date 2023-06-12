@@ -1,22 +1,22 @@
-﻿<div>
+﻿<div id="lost-page">
     <div class="lost-container">
         <div class="parinte">
-            <div class="formular-box">
+            <div class="formular-box" data-bind="with: ItemVM">
                 <div class="title-input">Do you lost something?</div>
                 <div class="section-input">
-                    <input type="text" placeholder="Category" class="input">
-                    <input type="text" placeholder="Color" class="input">
-                    <input type="text" placeholder="Date and time" class="input">
-                    <input type="text" placeholder="County" class="input">
-                    <input type="text" placeholder="City" class="input">
-                    <input type="text" placeholder="Address" class="input">
-                    <input type="text" placeholder="Contact email" class="input">
-                    <input type="text" placeholder="Contact number" class="input">
-                    <input type="text" placeholder="Description" class="input">
+                    <select placeholder="Category" class="input" data-bind="options: Parent.AvailableCategories, value: CategoryId, optionsValue: 'Id',optionsText: 'Text'" />
+                    <input type="text" placeholder="Color" class="input" data-bind="value: Color">
+                    @*<input type="text" data-bind="datepicker: DateAndTime" />*@
+                    <input type="text" placeholder="County" class="input" data-bind="value: County">
+                    <input type="text" placeholder="City" class="input" data-bind="value: City">
+                    <input type="text" placeholder="Address" class="input" data-bind="value: Address">
+                    <input type="text" placeholder="Contact email" class="input" data-bind="value: ContactEmail">
+                    <input type="text" placeholder="Contact number" class="input" data-bind="value: ContactNumber">
+                    <input type="text" placeholder="Description" class="input" data-bind="value: Description">
                     <div class="reward">
-                        <input type="checkbox" class="checkbox">
+                        <input type="checkbox" class="checkbox" data-bind="value: Reward">
                         <label class="label">Reward</label>
-                        <input type="text" placeholder="Cost" class="input-cost">
+                        <input type="text" placeholder="Cost" class="input-cost" data-bind="value: RewardCost">
                     </div>
                 </div>
                 <div class="insert-photo">
@@ -25,9 +25,85 @@
                     <img src="~/img/rectangle 27.png" class="upload-photo">
                 </div>
                 <div class="buton">
-                    <input type="button" value="Send" class="send-button">
+                    <input type="button" value="Send" class="send-button" data-bind="click: Parent.Save">
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts{
+
+    <script>
+
+        function LostItemViewModel(parent) {
+            var self = this;
+
+            self.Parent = parent;
+
+            self.CategoryId = ko.observable();
+            self.Color = ko.observable();
+            self.DateAndTime = ko.observable(new Date());
+            self.County = ko.observable();
+            self.City = ko.observable();
+            self.Address = ko.observable();
+            self.ContactEmail = ko.observable();
+            self.ContactNumber = ko.observable();
+            self.Description = ko.observable();
+            self.Reward = ko.observable();
+            self.RewardCost = ko.observable();
+        }
+
+        function LostPageViewModel() {
+            var self = this;
+
+            self.ItemVM = ko.observable();
+
+            self.AvailableCategories = categoriesAvailableList;
+
+            self.Initialize = function () {
+                var itemVm = new LostItemViewModel(self);
+                self.ItemVM(itemVm);
+            }
+
+            self.Save = function () {
+                debugger
+                var postModel = self.CollectData();
+                var url = "/CreateLostItem";
+                ajaxHelper.post(url, postModel,
+                    function (result) {
+                        debugger
+                    },
+                    function (err) {
+                        debugger
+                    });
+            }
+
+            self.CollectData = function () {
+                return {
+                    "ItemTypeId": self.ItemVM().CategoryId(),
+                    "Color": self.ItemVM().Color(),
+                    "County": self.ItemVM().County(),
+                    "City": self.ItemVM().City(),
+                    "Address": self.ItemVM().Address(),
+                    "ContactEmail": self.ItemVM().ContactEmail(),
+                    "ContactNumber": self.ItemVM().ContactNumber(),
+                    "Description": self.ItemVM().Description(),
+                    "Reward": self.ItemVM().Reward(),
+                    "RewardCost": self.ItemVM().RewardCost(),
+                }
+            }
+        }
+
+        var lostPageVM = new LostPageViewModel();
+
+        $(document).ready(function () {
+
+            lostPageVM.Initialize();
+
+            ko.applyBindings(lostPageVM, document.getElementById('lost-page'));
+        })
+
+    </script>
+
+}

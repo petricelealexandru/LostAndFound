@@ -24,16 +24,14 @@
     display: flex;
     justify-content: space-between;
     z-index: 9;
-    padding-top:20px;
+    padding-top: 20px;
 }
 
 navigation-left {
     position: relative;
 }
 
-.navigation-right
-{
-  
+.navigation-right {
 }
 
 .logo {
@@ -55,7 +53,7 @@ navigation-left {
     cursor: pointer;
     font-size: 22px;
     margin-left: 30px;
-   text-decoration: none;
+    text-decoration: none;
 }
 
 
@@ -108,7 +106,7 @@ navigation-left {
     cursor: pointer;
 }
 
-  .subcribe-button:hover {
+    .subcribe-button:hover {
         background-color: #892F0D;
     }
 
@@ -147,39 +145,33 @@ navigation-left {
 }
 
     .close:hover,
-    .close:focus
-    {
+    .close:focus {
         color: black;
         text-decoration: none;
         cursor: pointer;
     }
 
-    button
-   {
-        background: none;
-        border: none;
-
-
-    }
+button {
+    background: none;
+    border: none;
+}
 
 p {
     top: 0;
-     font-size:30px;
+    font-size: 30px;
     color: white;
-    text-align:center;
+    text-align: center;
 }
 
 .labels {
     color: #CC633B;
 }
 
-.label-information
-{
-    color:white;
+.label-information {
+    color: white;
 }
 
-.add-image
-{
+.add-image {
     padding-top: 20px;
 }
 
@@ -198,7 +190,6 @@ p {
 
 
 .message-found {
-
     background-color: #2B3138;
     height: 35px;
     width: 180px;
@@ -208,3 +199,24 @@ p {
     bottom: 30px;
     padding-left: 10px;
 }
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #2B3138;
+}
+
+    /* Works on Chrome, Edge, and Safari */
+    *::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: #2B3138;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: #CC633B;
+        border-radius: 20px;
+        border: 3px solid #2B3138;
+    }
