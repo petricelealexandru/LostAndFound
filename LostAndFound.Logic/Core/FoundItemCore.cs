@@ -42,6 +42,7 @@ namespace LostAndFound.Logic.Core
                 var list = itemFoundRepo.GetListQuery()
                                        .Select(entity => new ItemReturnModel()
                                        {
+                                           Id = entity.Id,
                                            ItemType = entity.Item.ItemType.Type,
                                            City = entity.Item.City.Name,
                                            County = entity.Item.County.Name,

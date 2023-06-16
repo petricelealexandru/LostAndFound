@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\ListingItems.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\ListingItems.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\listingItems.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LostAndFound.Logic\LostAndFound.Logic.csproj" />
   </ItemGroup>
 

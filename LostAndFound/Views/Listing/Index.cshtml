@@ -1,49 +1,11 @@
-﻿<style>
-    /* Style the tab */
-    .tab {
-        overflow: hidden;
-        background-color: #202329;
-    }
-
-        /* Style the buttons inside the tab */
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 20px;
-            color: white;
-        }
-
-            /* Change background color of buttons on hover */
-            .tab button:hover {
-                background-color: #64696F;
-            }
-
-            /* Create an active/current tablink class */
-            .tab button.active {
-                background-color: #CC633B;
-            }
-
-    /* Style the tab content */
-    .tabcontent {
-        display: none;
-        padding: 6px 12px;
-        border-top: none;
-    }
-</style>
-
-<div>
+﻿<div id="listing-page">
     <div class=" listing-container">
         <div class="parinte">
             <div class="formular">
                 <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'Lost')">Lost</button>
-                    <button class="tablinks" onclick="openCity(event, 'Found')">Found</button>
-                    <button class="tablinks" onclick="openCity(event, 'Match')">Match</button>
+                    <button class="tablinks" onclick="selectTab(event, 'Lost')">Lost</button>
+                    <button class="tablinks" onclick="selectTab(event, 'Found')">Found</button>
+                    <button class="tablinks" onclick="selectTab(event, 'Match')">Match</button>
                 </div>
 
                 <div id="Found" class="tabcontent">
@@ -62,17 +24,17 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody data-bind="foreach: LostItems">
                             <tr>
-                                <td>Animal</td>
-                                <td>Black</td>
-                                <td>20.05.2023 13:00</td>
+                                <td data-bind="text: Category"></td>
+                                <td data-bind="text: Color"></td>
+                                @*<td>20.05.2023 13:00</td>
                                 <td>Timis</td>
                                 <td>Timisoara</td>
                                 <td>Aleaa Studentilor</td>
                                 <td>0741580592</td>
                                 <td>alexandra.petricele@yahoo.com</td>
-                                <td>Telefon...</td>
+                                <td>Telefon...</td>*@
                                 <td>
                                     <button id="myBtn"><img src="~/img/eye.png" /></button>
                                 </td>
@@ -129,46 +91,61 @@
                 </div>
 
                 <div id="Match" class="tabcontent">
-                    <div class="title"><b>Potential match</b></div>
                     <table>
-                        <tr>
-                            <td>Animal</td>
-                            <td>Black</td>
-                            <td>20.05.2023 13:00</td>
-                            <td>Timis</td>
-                            <td>Timisoara</td>
-                            <td>Aleaa Studentilor</td>
-                            <td>0741580592</td>
-                            <td>alexandra.petricele@yahoo.com</td>
-                            <td>Telefon...</td>
-                            <td>
-                                <button id="myBtn"><img src="~/img/eye.png" /></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Animal</td>
-                            <td>Black</td>
-                            <td>20.05.2023 13:00</td>
-                            <td>Timis</td>
-                            <td>Timisoara</td>
-                            <td>Aleaa Studentilor</td>
-                            <td>0741580592</td>
-                            <td>alexandra.petricele@yahoo.com</td>
-                            <td>Telefon...</td>
-                            <td> <img src="~/img/eye.png" /></td>
-                        </tr>
-                        <tr>
-                            <td>Animal</td>
-                            <td>Black</td>
-                            <td>20.05.2023 13:00</td>
-                            <td>Timis</td>
-                            <td>Timisoara</td>
-                            <td>Aleaa Studentilor</td>
-                            <td>0741580592</td>
-                            <td>alexandra.petricele@yahoo.com</td>
-                            <td>Telefon...</td>
-                            <td> <img src="~/img/eye.png" /></td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Color</th>
+                                <th>Date and time</th>
+                                <th>County</th>
+                                <th>City</th>
+                                <th>Adress</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Animal</td>
+                                <td>Black</td>
+                                <td>20.05.2023 13:00</td>
+                                <td>Timis</td>
+                                <td>Timisoara</td>
+                                <td>Aleaa Studentilor</td>
+                                <td>0741580592</td>
+                                <td>alexandra.petricele@yahoo.com</td>
+                                <td>Telefon...</td>
+                                <td>
+                                    <button id="myBtn"><img src="~/img/eye.png" /></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Animal</td>
+                                <td>Black</td>
+                                <td>20.05.2023 13:00</td>
+                                <td>Timis</td>
+                                <td>Timisoara</td>
+                                <td>Aleaa Studentilor</td>
+                                <td>0741580592</td>
+                                <td>alexandra.petricele@yahoo.com</td>
+                                <td>Telefon...</td>
+                                <td> <img src="~/img/eye.png" /></td>
+                            </tr>
+                            <tr>
+                                <td>Animal</td>
+                                <td>Black</td>
+                                <td>20.05.2023 13:00</td>
+                                <td>Timis</td>
+                                <td>Timisoara</td>
+                                <td>Aleaa Studentilor</td>
+                                <td>0741580592</td>
+                                <td>alexandra.petricele@yahoo.com</td>
+                                <td>Telefon...</td>
+                                <td> <img src="~/img/eye.png" /></td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -176,30 +153,21 @@
     </div>
 </div>
 
-
 @section Scripts{
+
     <script>
-
-        function openCity(evt, cityName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-
+        var listingPageVM = new ListingPageViewModel();
 
         $(document).ready(function () {
+
+            listingPageVM.InitializePage();
+
+            ko.applyBindings(listingPageVM, document.getElementById('listing-page'));
+
             //cand se initializeaza pagina trebe sa apelam specific
-            openCity(event, 'Found');
             // functia asta face tabul activ o sa intelegi logica daca te uiti
             //se face un foreach peste elemntele de hmlt si se pune style ul dispaly active ca by default este display none
+            selectTab(event, 'Lost');
         })
     </script>
 }

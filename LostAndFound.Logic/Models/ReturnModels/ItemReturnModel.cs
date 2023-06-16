@@ -2,6 +2,7 @@
 {
     public class ItemReturnModel
     {
+        public Guid Id { get; set; }
         public string ItemType { get; set; }
         public string City { get; set; }
         public string County { get; set; }
