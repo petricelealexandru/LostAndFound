@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LostAndFound.Logic.Core;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LostAndFound.Controllers
 {
     public class MatchController : Controller
     {
-        public IActionResult Index()
+        [HttpGet]
+        [Route("[action]")]
+        public virtual JsonResult GetMatchItems()
         {
-            return View();
+            var response = MatchItemCore.GetMatchItems();
+            return Json(response);
         }
     }
 }

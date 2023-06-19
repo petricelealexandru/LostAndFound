@@ -1,10 +1,10 @@
 ﻿var categoriesAvailableList = [
     {
-        "Id": "86758d30-37f5-43df-acc4-5f7e7632478c",
+        "Id": "00DBF0D7-3781-49D7-BD92-1E60B8C9B455",
         "Text": "Obiect"
     },
     {
-        "Id": "e6d73039-ca93-4a10-a856-7c3fe5147b03",
+        "Id": "FF9E110D-68F8-435C-A082-EFD709FE1A66",
         "Text": "Animal"
     }]
 
@@ -12,28 +12,6 @@
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function () {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
 //ko.bindingHandlers.datepicker = {
 //    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
 //        //initialize datepicker with some optional options
@@ -87,4 +65,16 @@ function selectTab(evt, cityName) {
     }
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
+}
+
+function CountyViewModel() {
+    var self = this;
+
+    self.Id = ko.observable();
+    self.Text = ko.observable();
+
+    self.Initialize = function (data) {
+        self.Id = data.Id;
+        self.Text = data.Text;
+    }
 }

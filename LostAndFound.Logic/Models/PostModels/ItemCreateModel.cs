@@ -3,7 +3,7 @@
     public class ItemCreateModel
     {
         public Guid ItemTypeId { get; set; }
-        public Guid CityId { get; set; }
+        public string City { get; set; }
         public Guid CountyId { get; set; }
         public string Color { get; set; }
         public string Address { get; set; }

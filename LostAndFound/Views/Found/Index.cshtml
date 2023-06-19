@@ -4,10 +4,9 @@
             <div class="formular-box" data-bind="with: ItemVM">
                 <div class="title-input">Do you found something?</div>
                 <div class="section-input">
-                    <input type="text" placeholder="Category" class="input" data-bind="options: Parent.AvailableCategories, value: CategoryId, optionsValue: 'Id',optionsText: 'Text'">
+                    <select placeholder="Category" class="input" data-bind="options: Parent.AvailableCategories, value: CategoryId, optionsValue: 'Id',optionsText: 'Text'" />
                     <input type="text" placeholder="Color" class="input" data-bind="value: Color">
-                    <!--<input type="text" placeholder="Date and time" class="input" data-bind="datepicker: DateandTime ">-->
-                    <input type="text" placeholder="County" class="input" data-bind="value: County">
+                    <select placeholder="County" class="input" data-bind="options: Parent.AvailableCounties, value: CountyId,optionsValue: 'Id',optionsText: 'Text'" />
                     <input type="text" placeholder="City" class="input" data-bind="value: City">
                     <input type="text" placeholder="Address" class="input" data-bind="value: Address">
                     <input type="text" placeholder="Contact email" class="input" data-bind="value: ContactEmail">
@@ -31,7 +30,7 @@
 
     <script>
 
-        function FoundItemPageView(parent) {
+        function FoundItemViewModel(parent) {
             var self = this;
 
             self.Parent = parent;
@@ -39,7 +38,7 @@
             self.CategoryId = ko.observable();
             self.Color = ko.observable();
             self.DateandTime = ko.observable(new Date());
-            self.County = ko.observable();
+            self.CountyId = ko.observable();
             self.City = ko.observable();
             self.Address = ko.observable();
             self.ContactEmail = ko.observable();
@@ -49,30 +48,45 @@
             self.Cost = ko.observable();
         }
 
-        function FoundPageViewModel
-        {
+        function FoundPageViewModel() {
             var self = this;
 
             self.ItemVM = ko.observable();
 
             self.AvailableCategories = categoriesAvailableList;
+            self.AvailableCounties = ko.observableArray([]);
 
-            self.Initializare = function () {
+            self.Initialize = function () {
                 var itemVm = new FoundItemViewModel(self);
                 self.ItemVM(itemVm);
             }
 
+            self.GetCounties = function () {
+                var url = "/GetCounties";
+                ajaxHelper.getWithoutData(url,
+                    function (result) {
+                        var items = result.Data;
+
+                        var itemsListVM = [];
+                        for (var i = 0; i < items.length; i++) {
+                            var countyVM = new CountyViewModel();
+                            countyVM.Initialize(items[i]);
+                            itemsListVM.push(countyVM);
+                        }
+
+                        self.AvailableCounties(itemsListVM);
+                    },
+                    function (err) {
+                    });
+            }
 
             self.Save = function () {
-                debugger
                 var postModel = self.CollectData();
                 var url = "/CreateFoundItem";
                 ajaxHelper.post(url, postModel,
                     function (result) {
-                        debugger
                     },
                     function (err) {
-                        debugger
                     });
             }
 
@@ -80,27 +94,24 @@
                 return {
                     "ItemTypeId": self.ItemVM().CategoryId(),
                     "Color": self.ItemVM().Color(),
-                    "County": self.ItemVM().County(),
+                    "CountyId": self.ItemVM().CountyId(),
                     "City": self.ItemVM().City(),
-                    "Address": self.ItemVM.Address(),
-                    "ContactEmail": self.ItemVM.ContactEmail(),
-                    "ContactNumber": self.ItemVM.ContactNumber(),
-                    "Description": self.ItemVM.Description(),
-                    "Reward": self.ItemVM.Reward(),
-                    "RewardCost": self.ItemVM.RewardCost(),
+                    "Address": self.ItemVM().Address(),
+                    "ContactEmail": self.ItemVM().ContactEmail(),
+                    "ContactNumber": self.ItemVM().ContactNumber(),
+                    "Description": self.ItemVM().Description(),
                 }
             }
         }
 
         var foundPageVM = new FoundPageViewModel();
 
-        $(document).ready(function ())
-        {
+        $(document).ready(function () {
+            foundPageVM.GetCounties();
             foundPageVM.Initialize();
 
             ko.applyBindings(foundPageVM, document.getElementById('found-page'));
         })
 
     </script>
-
 }

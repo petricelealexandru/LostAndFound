@@ -13,7 +13,7 @@ namespace LostAndFound.Database.Models
 
         public Guid Id { get; set; }
         public Guid ItemTypeId { get; set; }
-        public Guid CityId { get; set; }
+        public string City { get; set; }
         public Guid CountyId { get; set; }
         public string Color { get; set; }
         public string Address { get; set; }
@@ -23,7 +23,6 @@ namespace LostAndFound.Database.Models
         public bool? Reward { get; set; }
         public double? Cost { get; set; }
 
-        public virtual City City { get; set; }
         public virtual County County { get; set; }
         public virtual ItemType ItemType { get; set; }
         public virtual ICollection<ImageTable> ImageTables { get; set; }

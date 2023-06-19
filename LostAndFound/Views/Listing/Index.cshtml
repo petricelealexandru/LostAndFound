@@ -3,7 +3,7 @@
         <div class="parinte">
             <div class="formular">
                 <div class="tab">
-                    <button class="tablinks" onclick="selectTab(event, 'Lost')">Lost</button>
+                    <button class="tablinks active" onclick="selectTab(event, 'Lost')">Lost</button>
                     <button class="tablinks" onclick="selectTab(event, 'Found')">Found</button>
                     <button class="tablinks" onclick="selectTab(event, 'Match')">Match</button>
                 </div>
@@ -28,7 +28,7 @@
                             <tr>
                                 <td data-bind="text: Category"></td>
                                 <td data-bind="text: Color"></td>
-                                <td data-bind="text: FoundAt"></td>
+                                <td data-bind="text: DateAndTime"></td>
                                 <td data-bind="text: County"></td>
                                 <td data-bind="text: City"></td>
                                 <td data-bind="text: Address"></td>
@@ -36,7 +36,7 @@
                                 <td data-bind="text: ContactEmail"></td>
                                 <td data-bind="text: Description" ></td>
                                 <td>
-                                    <button id="myBtn"><img src="~/img/eye.png" /></button>
+                                    <button data-bind="click: ShowModal"><img src="~/img/eye.png" /></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -59,37 +59,24 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody data-bind="foreach: LostItems">
                             <tr>
-                                <td>Animal</td>
-                                <td>Black</td>
-                                <td>20.05.2023 13:00</td>
-                                <td>Timis</td>
-                                <td>Timisoara</td>
-                                <td>Aleaa Studentilor</td>
-                                <td>0741580592</td>
-                                <td>alexandra.petricele@yahoo.com</td>
-                                <td>Telefon...</td>
+                                <td data-bind="text: Category"></td>
+                                <td data-bind="text: Color"></td>
+                                <td data-bind="text: DateAndTime"></td>
+                                <td data-bind="text: County"></td>
+                                <td data-bind="text: City"></td>
+                                <td data-bind="text: Address"></td>
+                                <td data-bind="text: ContactNumber"></td>
+                                <td data-bind="text: ContactEmail"></td>
+                                <td data-bind="text: Description"></td>
                                 <td>
-                                    <button id="myBtn"><img src="~/img/eye.png" /></button>
+                                    <button data-bind="click: ShowModal"><img src="~/img/eye.png" /></button>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Animal</td>
-                                <td>Black</td>
-                                <td>20.05.2023 13:00</td>
-                                <td>Timis</td>
-                                <td>Timisoara</td>
-                                <td>Aleaa Studentilor</td>
-                                <td>0741580592</td>
-                                <td>alexandra.petricele@yahoo.com</td>
-                                <td>Telefon...</td>
-                                <td> <img src="~/img/eye.png" /></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
                 <div id="Match" class="tabcontent">
                     <table>
                         <thead>
@@ -106,44 +93,20 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody data-bind="foreach: MatchItems">
                             <tr>
-                                <td>Animal</td>
-                                <td>Black</td>
-                                <td>20.05.2023 13:00</td>
-                                <td>Timis</td>
-                                <td>Timisoara</td>
-                                <td>Aleaa Studentilor</td>
-                                <td>0741580592</td>
-                                <td>alexandra.petricele@yahoo.com</td>
-                                <td>Telefon...</td>
+                                <td data-bind="text: Category"></td>
+                                <td data-bind="text: Color"></td>
+                                <td data-bind="text: DateAndTime"></td>
+                                <td data-bind="text: County"></td>
+                                <td data-bind="text: City"></td>
+                                <td data-bind="text: Address"></td>
+                                <td data-bind="text: ContactNumber"></td>
+                                <td data-bind="text: ContactEmail"></td>
+                                <td data-bind="text: Description"></td>
                                 <td>
-                                    <button id="myBtn"><img src="~/img/eye.png" /></button>
+                                    <button data-bind="click: ShowModal"><img src="~/img/eye.png" /></button>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Animal</td>
-                                <td>Black</td>
-                                <td>20.05.2023 13:00</td>
-                                <td>Timis</td>
-                                <td>Timisoara</td>
-                                <td>Aleaa Studentilor</td>
-                                <td>0741580592</td>
-                                <td>alexandra.petricele@yahoo.com</td>
-                                <td>Telefon...</td>
-                                <td> <img src="~/img/eye.png" /></td>
-                            </tr>
-                            <tr>
-                                <td>Animal</td>
-                                <td>Black</td>
-                                <td>20.05.2023 13:00</td>
-                                <td>Timis</td>
-                                <td>Timisoara</td>
-                                <td>Aleaa Studentilor</td>
-                                <td>0741580592</td>
-                                <td>alexandra.petricele@yahoo.com</td>
-                                <td>Telefon...</td>
-                                <td> <img src="~/img/eye.png" /></td>
                             </tr>
                         </tbody>
                     </table>

@@ -8,7 +8,6 @@ namespace LostAndFound.Database.Base
         TEntity Create(TEntity entity);
         TEntity Update(TEntity entity);
         TEntity Delete(TEntity entity);
-        //de aici nu mai inteleg
         TEntity GetSingle(Expression<Func<TEntity, bool>> expression, string[] navigationProperties = null);
         IQueryable<TEntity> OrderBy(Expression<Func<TEntity, object>> expression);
         IQueryable<TEntity> OrderByDescending(Expression<Func<TEntity, object>> expression);

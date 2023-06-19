@@ -14,7 +14,7 @@ namespace LostAndFound.Logic.Core
                 Id = Guid.NewGuid(),
                 ItemTypeId = model.ItemTypeId,
                 Address = model.Address,
-                CityId = model.CityId,
+                City = model.City,
                 CountyId = model.CountyId,
                 Color = model.Color,
                 Description =model.Description,

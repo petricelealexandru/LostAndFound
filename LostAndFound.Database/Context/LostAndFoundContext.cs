@@ -17,7 +17,6 @@ namespace LostAndFound.Database.Context
         {
         }
 
-        public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<County> Counties { get; set; }
         public virtual DbSet<ImageTable> ImageTables { get; set; }
         public virtual DbSet<Item> Items { get; set; }
@@ -37,17 +36,6 @@ namespace LostAndFound.Database.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
-
-            modelBuilder.Entity<City>(entity =>
-            {
-                entity.ToTable("City");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
-            });
 
             modelBuilder.Entity<County>(entity =>
             {
@@ -85,6 +73,10 @@ namespace LostAndFound.Database.Context
                     .IsRequired()
                     .HasMaxLength(20);
 
+                entity.Property(e => e.City)
+                  .IsRequired()
+                  .HasMaxLength(50);
+
                 entity.Property(e => e.Color)
                     .IsRequired()
                     .HasMaxLength(20);
@@ -100,12 +92,6 @@ namespace LostAndFound.Database.Context
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasMaxLength(200);
-
-                entity.HasOne(d => d.City)
-                    .WithMany(p => p.Items)
-                    .HasForeignKey(d => d.CityId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Item_City");
 
                 entity.HasOne(d => d.County)
                     .WithMany(p => p.Items)
