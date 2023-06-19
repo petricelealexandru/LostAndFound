@@ -1,6 +1,7 @@
 ﻿using LostAndFound.Database.Base;
 using LostAndFound.Logic.Base;
 using LostAndFound.Logic.Models.PostModels;
+using System.Security.Cryptography.X509Certificates;
 using DatabaseModel = LostAndFound.Database.Models;
 
 namespace LostAndFound.Logic.Core
@@ -22,6 +23,7 @@ namespace LostAndFound.Logic.Core
                     return CustomResponse.Error();
                 }
 
+                //
                 var responseCreateFoundItem = CreateFoundEntry(itemFoundRepo, responseCreateItem.Id);
                 if (CustomResponse.IsSuccessful(responseCreateFoundItem))
                 {
@@ -32,14 +34,14 @@ namespace LostAndFound.Logic.Core
                 unitOfWork.CommitTransaction();
                 return CustomResponse.Success();
             }
-        } 
+        }
 
         public static CustomResponse GetFoundItems()
         {
             using (var unitOfWork = new RepoUnitOfWork())
             using (var itemFoundRepo = unitOfWork.Repository<DatabaseModel.ItemFound>())
             {
-                var list = itemFoundRepo.GetListQuery()
+                var list = itemFoundRepo.GetListQuery(item=> item.Id != Guid.Empty)
                                        .Select(entity => new ItemReturnModel()
                                        {
                                            Id = entity.Id,
@@ -51,7 +53,7 @@ namespace LostAndFound.Logic.Core
                                            Description = entity.Item.Description,
                                            ContactNumber = entity.Item.ContactNumber,
                                            ContactEmail = entity.Item.ContactEmail,
-                                       });
+                                       }).ToList();
                 return CustomResponse.Success(list);
             }
         }
@@ -60,6 +62,7 @@ namespace LostAndFound.Logic.Core
 
         #region private
 
+        //de ce e aici?
         public static CustomResponse CreateLostEntry(IRepository<DatabaseModel.ItemLost> itemLostRepo, Guid itemId)
         {
             var itemLostDAL = new DatabaseModel.ItemLost()
@@ -95,8 +98,8 @@ namespace LostAndFound.Logic.Core
                 return CustomResponse.Error();
             }
             return CustomResponse.Success();
-
         }
 
     }
+
 }

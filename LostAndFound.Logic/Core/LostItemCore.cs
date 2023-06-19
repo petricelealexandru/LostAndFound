@@ -8,7 +8,6 @@ namespace LostAndFound.Logic.Core
     public class LostItemCore
     {
         #region public
-
         public static CustomResponse CreateLostItem(ItemCreateModel model)
         {
             using (var unitOfWork = new RepoUnitOfWork(beginTransaction: true))
@@ -21,7 +20,6 @@ namespace LostAndFound.Logic.Core
                     unitOfWork.RollbackTransaction();
                     return CustomResponse.Error();
                 }
-
                 var responseCreateLostItem = CreateLostEntry(itemLostRepo, responseCreateItem.Id);
                 if (CustomResponse.IsSuccessful(responseCreateLostItem))
                 {
@@ -33,15 +31,15 @@ namespace LostAndFound.Logic.Core
                 return CustomResponse.Success();
             }
         }
-
         public static CustomResponse GetLostItems()
         {
             using (var unitOfWork = new RepoUnitOfWork())
             using (var itemLostRepo = unitOfWork.Repository<DatabaseModel.ItemLost>())
             {
-                var list = itemLostRepo.GetListQuery()
+                var list = itemLostRepo.GetListQuery(item => item.Id != Guid.Empty)
                                        .Select(entity => new ItemReturnModel()
                                        {
+                                           Id = entity.Id,
                                            ItemType = entity.Item.ItemType.Type,
                                            City = entity.Item.City.Name,
                                            County = entity.Item.County.Name,
@@ -52,15 +50,12 @@ namespace LostAndFound.Logic.Core
                                            ContactEmail = entity.Item.ContactEmail,
                                            Reward = entity.Item.Reward,
                                            Cost = entity.Item.Cost,
-                                       });
+                                       }).ToList();
                 return CustomResponse.Success(list);
             }
         }
-
         #endregion
-
         #region private
-
         public static CustomResponse CreateLostEntry(IRepository<DatabaseModel.ItemLost> itemLostRepo, Guid itemId)
         {
             var itemLostDAL = new DatabaseModel.ItemLost()

@@ -91,7 +91,7 @@ tr: nth-child(odd) td {
 
         /* Create an active/current tablink class */
         .tab button.active {
-            background-color: #CC633B;
+            text-decoration-color: #CC633B;
         }
 
 /* Style the tab content */

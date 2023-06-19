@@ -13,18 +13,18 @@ namespace LostAndFound.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public virtual ActionResult CreateLostItem([FromBody] ItemCreateModel model)
+        public virtual JsonResult CreateLostItem([FromBody] ItemCreateModel model)
         {
             var response = LostItemCore.CreateLostItem(model);
-            return Ok(response);
+            return Json(response);
         }
 
         [HttpGet]
         [Route("[action]")]
-        public virtual ActionResult GetLostItems()
+        public virtual JsonResult GetLostItems()
         {
             var response = LostItemCore.GetLostItems();
-            return Ok(response);
+            return Json(response);
         }
     }
 }

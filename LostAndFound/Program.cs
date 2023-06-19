@@ -1,7 +1,20 @@
+using Newtonsoft.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+//{
+//    options.SerializerOptions.PropertyNameCaseInsensitive = false;
+//    options.SerializerOptions.PropertyNamingPolicy = null;
+//    options.SerializerOptions.WriteIndented = true;
+//});
+
+builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+               options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 var app = builder.Build();
 

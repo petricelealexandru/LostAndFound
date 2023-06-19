@@ -3,7 +3,7 @@
     function getWithoutData(url, successCallback, failureCallBack) {
         $.ajax({
             url: url,
-            dataType: "html",
+            dataType: "json",
             success: successCallback,
             error: failureCallBack
         });

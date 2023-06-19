@@ -14,7 +14,7 @@
     self.Cost = ko.observable();
 
     self.Initialize = function (data) {
-        self.Category(data.Category);
+        self.Category(data.ItemType);
         self.Color(data.Color);
         self.DateAndTime(data.DateAndTime);
         self.County(data.County);
@@ -36,13 +36,13 @@ function ListingPageViewModel() {
     self.MatchItems = ko.observableArray([]);
 
     self.InitializePage = function () {
-        debugger
         self.InitializeLostItems();
         self.InitializeFoundItems();
-        self.InitializeMatchItems();
+        //self.InitializeMatchItems();
     }
 
     self.InitializeLostItems = function () {
+        debugger
         var url = "/GetLostItems";
         ajaxHelper.getWithoutData(url,
             function (result) {
@@ -62,7 +62,8 @@ function ListingPageViewModel() {
             });
     }
     self.InitializeFoundItems = function () {
-        var url = "/GetLostItems";
+        debugger
+        var url = "/GetFoundItems";
         ajaxHelper.getWithoutData(url,
             function (result) {
                 debugger

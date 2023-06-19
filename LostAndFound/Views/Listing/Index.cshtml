@@ -24,17 +24,17 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody data-bind="foreach: LostItems">
+                        <tbody data-bind="foreach: FoundItems">
                             <tr>
                                 <td data-bind="text: Category"></td>
                                 <td data-bind="text: Color"></td>
-                                @*<td>20.05.2023 13:00</td>
-                                <td>Timis</td>
-                                <td>Timisoara</td>
-                                <td>Aleaa Studentilor</td>
-                                <td>0741580592</td>
-                                <td>alexandra.petricele@yahoo.com</td>
-                                <td>Telefon...</td>*@
+                                <td data-bind="text: FoundAt"></td>
+                                <td data-bind="text: County"></td>
+                                <td data-bind="text: City"></td>
+                                <td data-bind="text: Address"></td>
+                                <td data-bind="text: ContactNumber"></td>
+                                <td data-bind="text: ContactEmail"></td>
+                                <td data-bind="text: Description" ></td>
                                 <td>
                                     <button id="myBtn"><img src="~/img/eye.png" /></button>
                                 </td>

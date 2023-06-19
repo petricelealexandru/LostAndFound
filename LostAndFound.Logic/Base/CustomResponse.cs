@@ -10,7 +10,7 @@
         {
             Status = status;
             Data = data;
-            StatusCode = statusCode;
+            StatusCode = statusCode; 
         }
 
         public static CustomResponse Success(object data = null)
