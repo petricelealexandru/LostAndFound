@@ -24,7 +24,7 @@
                 </div>
                 <div class="insert-photo">
                     <img id="preview-picture" src="http://placehold.it/180" style="width: 100px; height: 100px; object-fit: cover" />
-                    <input type='file' class="secondary-button" data-bind="event: {change: readURL.bind($data, this)}" />
+                    <input type='file' data-bind="event: {change: readURL.bind($data, this)}" />
                 </div>
                 <div class="buton">
                     <input type="button" value="Send" class="send-button" data-bind="click: Parent.Save">
@@ -102,11 +102,46 @@
 
             self.Save = function () {
                 var postModel = self.CollectData();
+
+                if (!postModel.Color || postModel.Color === "") {
+                    toastr.error('Please fill Color input!');
+                    return;
+                }
+
+                if (!postModel.City || postModel.City === "") {
+                    toastr.error('Please fill City input!');
+                    return;
+                }
+
+                if (!postModel.Address || postModel.Address === "") {
+                    toastr.error('Please fill Address input!');
+                    return;
+                }
+
+                if (!emailRegex.test(postModel.ContactEmail)) {
+                    toastr.error('Please fill ContactEmail input!');
+                    return;
+                }
+
+                if (!phoneNumberRegex.test(postModel.ContactNumber)) {
+                    toastr.error('Please fill valid ContactNumber input!');
+                    return;
+                }
+
+                if (postModel.Reward == true) {
+                    if (!numberRegex.test(postModel.RewardCost)) {
+                        toastr.error('Please Correct Number!');
+                        return;
+                    }
+                }
+
                 var url = "/CreateLostItem";
                 ajaxHelper.post(url, postModel,
                     function (result) {
+                        toastr.success('Successfully!');
                     },
                     function (err) {
+                        toastr.error('Error!');
                     });
             }
 
@@ -139,9 +174,3 @@
 
     </script>
 }
-
-
-
-
-
-

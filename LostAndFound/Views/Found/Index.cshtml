@@ -9,7 +9,7 @@
                     <input type="text" class="input" data-bind="dateTimePicker: DateAndTime,
                                       dateTimePickerOptions: {
                                         format: 'MM/DD/YYYY HH:mm',
-                                      }"/>
+                                      }" />
                     <select placeholder="County" class="input" data-bind="options: Parent.AvailableCounties, value: CountyId,optionsValue: 'Id',optionsText: 'Text'" />
                     <input type="text" placeholder="City" class="input" data-bind="value: City">
                     <input type="text" placeholder="Address" class="input" data-bind="value: Address">
@@ -18,8 +18,8 @@
                     <input type="text" placeholder="Description" class="input" data-bind="value: Description">
                 </div>
                 <div class="insert-photo">
-                    <img id="preview-picture" src="http://placehold.it/180" style="width: 100px; height: 100px; object-fit: cover"/>
-                    <input type='file' class="secondary-button" data-bind="event: {change: readURL.bind($data, this)}" />
+                    <img id="preview-picture" src="http://placehold.it/180" style="width: 100px; height: 100px; object-fit: cover" />
+                    <input type='file' data-bind="event: {change: readURL.bind($data, this)}" />
                 </div>
                 <div class="buton">
                     <input type="button" value="Send" class="send-button" data-bind="click: Parent.Save">
@@ -47,8 +47,6 @@
             self.ContactEmail = ko.observable();
             self.ContactNumber = ko.observable();
             self.Description = ko.observable();
-            self.Reward = ko.observable();
-            self.Cost = ko.observable();
             self.PictureContent = ko.observable();
 
             self.readURL = function (input, vm, element) {
@@ -98,11 +96,39 @@
 
             self.Save = function () {
                 var postModel = self.CollectData();
+
+                if (!postModel.Color || postModel.Color === "") {
+                    toastr.error('Please fill Color input!');
+                    return;
+                }
+
+                if (!postModel.City || postModel.City === "") {
+                    toastr.error('Please fill City input!');
+                    return;
+                }
+
+                if (!postModel.Address || postModel.Address === "") {
+                    toastr.error('Please fill Address input!');
+                    return;
+                }
+
+                if (!emailRegex.test(postModel.ContactEmail)) {
+                    toastr.error('Please fill valid ContactEmail input!');
+                    return;
+                }
+
+                if (!phoneNumberRegex.test(postModel.ContactNumber)) {
+                    toastr.error('Please fill valid ContactNumber input!');
+                    return;
+                }
+
                 var url = "/CreateFoundItem";
                 ajaxHelper.post(url, postModel,
                     function (result) {
+                        toastr.success('Successfully!');
                     },
                     function (err) {
+                        toastr.success('Error!');
                     });
             }
 

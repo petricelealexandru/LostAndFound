@@ -75,3 +75,7 @@ function CountyViewModel() {
         self.Text = data.Text;
     }
 }
+
+var emailRegex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+var numberRegex = new RegExp(/^\s*[+-]?(\d+|\d*\.\d+|\d+\.\d*)([Ee][+-]?\d+)?\s*$/);
+var phoneNumberRegex = new RegExp (/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
