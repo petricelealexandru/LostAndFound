@@ -29,7 +29,10 @@ namespace LostAndFound.Logic.Core
                                             ContactEmail = entity.ItemLost.Item.ContactEmail,
                                             Reward = entity.ItemLost.Item.Reward,
                                             Cost = entity.ItemLost.Item.Cost,
-                                            DateAndTime = entity.MatchedAt.ToString("dd-MM-yyyy HH:mm")
+                                            DateAndTime = entity.MatchedAt.ToString("dd-MM-yyyy HH:mm"),
+                                            PictureContent = entity.ItemLost.Item.ImageTables.First() != null ?
+                                                             entity.ItemLost.Item.ImageTables.First().ImageData :
+                                                             String.Empty,
                                         }).ToList();
 
                 return CustomResponse.Success(list);

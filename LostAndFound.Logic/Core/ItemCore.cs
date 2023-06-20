@@ -17,11 +17,11 @@ namespace LostAndFound.Logic.Core
                 City = model.City,
                 CountyId = model.CountyId,
                 Color = model.Color,
-                Description =model.Description,
+                Description = model.Description,
                 ContactNumber = model.ContactNumber,
                 ContactEmail = model.ContactEmail,
                 Reward = model.Reward,
-                Cost = model.Cost
+                Cost = model.Cost,
             };
 
             itemDAL = itemRepo.Create(itemDAL);

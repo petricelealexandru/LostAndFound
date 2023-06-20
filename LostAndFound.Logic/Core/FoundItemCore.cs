@@ -1,5 +1,4 @@
 ﻿using LostAndFound.Database.Base;
-using LostAndFound.Database.Models;
 using LostAndFound.Logic.Base;
 using LostAndFound.Logic.Models.PostModels;
 using DatabaseModel = LostAndFound.Database.Models;
@@ -15,9 +14,17 @@ namespace LostAndFound.Logic.Core
             using (var unitOfWork = new RepoUnitOfWork(beginTransaction: true))
             using (var itemRepo = unitOfWork.Repository<DatabaseModel.Item>())
             using (var itemFoundRepo = unitOfWork.Repository<DatabaseModel.ItemFound>())
+            using (var imageTableRepo = unitOfWork.Repository<DatabaseModel.ImageTable>())
             {
                 var responseCreateItem = ItemCore.CreateItem(model, itemRepo);
                 if (responseCreateItem == null)
+                {
+                    unitOfWork.RollbackTransaction();
+                    return CustomResponse.Error();
+                }
+
+                var responseImage = ImageTableCore.CreateImage(model.PictureContent, responseCreateItem.Id, imageTableRepo);
+                if (responseImage == null)
                 {
                     unitOfWork.RollbackTransaction();
                     return CustomResponse.Error();
@@ -53,7 +60,10 @@ namespace LostAndFound.Logic.Core
                                             Description = entity.Item.Description,
                                             ContactNumber = entity.Item.ContactNumber,
                                             ContactEmail = entity.Item.ContactEmail,
-                                            DateAndTime = entity.FoundAt.ToString("dd-MM-yyyy HH:mm")
+                                            DateAndTime = entity.FoundAt.ToString("dd-MM-yyyy HH:mm"),
+                                            PictureContent = entity.Item.ImageTables.First() != null ?
+                                                             entity.Item.ImageTables.First().ImageData :
+                                                             String.Empty,
                                         }).ToList();
 
                 return CustomResponse.Success(list);

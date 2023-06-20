@@ -14,9 +14,8 @@
                     <input type="text" placeholder="Description" class="input" data-bind="value: Description">
                 </div>
                 <div class="insert-photo">
-                    <img src="~/img/rectangle 27.png" class="upload-photo">
-                    <img src="~/img/rectangle 27.png" class="upload-photo">
-                    <img src="~/img/rectangle 27.png" class="upload-photo">
+                    <img id="preview-picture" src="http://placehold.it/180" style="width: 100px; height: 100px; object-fit: cover"/>
+                    <input type='file' class="secondary-button" data-bind="event: {change: readURL.bind($data, this)}" />
                 </div>
                 <div class="buton">
                     <input type="button" value="Send" class="send-button" data-bind="click: Parent.Save">
@@ -46,6 +45,19 @@
             self.Description = ko.observable();
             self.Reward = ko.observable();
             self.Cost = ko.observable();
+            self.PictureContent = ko.observable();
+
+            self.readURL = function (input, vm, element) {
+                if (element.currentTarget.files && element.currentTarget.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        debugger
+                        $('#preview-picture').attr('src', e.target.result);
+                        self.PictureContent(e.target.result);
+                    };
+                    reader.readAsDataURL(element.currentTarget.files[0]);
+                }
+            }
         }
 
         function FoundPageViewModel() {
@@ -100,6 +112,7 @@
                     "ContactEmail": self.ItemVM().ContactEmail(),
                     "ContactNumber": self.ItemVM().ContactNumber(),
                     "Description": self.ItemVM().Description(),
+                    "PictureContent": self.ItemVM().PictureContent()
                 }
             }
         }

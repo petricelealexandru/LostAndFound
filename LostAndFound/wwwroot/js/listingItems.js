@@ -11,6 +11,7 @@
     self.ContactNumber = ko.observable();
     self.Description = ko.observable();
     self.Reward = ko.observable();
+    self.PictureContent = ko.observable();
 
     self.Initialize = function (data) {
 
@@ -24,6 +25,7 @@
         self.ContactNumber(data.ContactNumber);
         self.Description(data.Description);
         self.Reward(data.Reward);
+        self.PictureContent(data.PictureContent);
     }
 
     self.Close = function () {
@@ -46,6 +48,7 @@ function ItemListingViewModel() {
     self.Description = ko.observable();
     self.Reward = ko.observable();
     self.Cost = ko.observable();
+    self.PictureContent = ko.observable();
 
     self.Initialize = function (data) {
         self.Category(data.ItemType);
@@ -61,6 +64,7 @@ function ItemListingViewModel() {
         self.Description(data.Description);
         self.Reward(data.Reward);
         self.Cost(data.Cost);
+        self.PictureContent(data.PictureContent);
     }
 
     self.ShowModal = function () {
@@ -70,24 +74,18 @@ function ItemListingViewModel() {
 
         modalVM.Initialize({
 
-            "Category": self.Category,
-            "Color": self.Color,
-            "DateAndTime": self.DateAndTime,
-            "County": self.County,
-            "City": self.City,
-            "Address": self.Address,
-            "ContactEmail": self.ContactEmail,
-            "ContactNumber": self.ContactNumber,
-            "Description": self.Description,
-            "Reward": self.Reward,
-            "Cost": self.Cost
-            //"Address": self.Address()
-            //"Address": self.Address()
-            //"Address": self.Address()
-            //"Address": self.Address()
-            //"Address": self.Address()
-            //"Address": self.Address()
-            //"Address": self.Address()
+            "Category": self.Category(),
+            "Color": self.Color(),
+            "DateAndTime": self.DateAndTime(),
+            "County": self.County(),
+            "City": self.City(),
+            "Address": self.Address(),
+            "ContactEmail": self.ContactEmail(),
+            "ContactNumber": self.ContactNumber(),
+            "Description": self.Description(),
+            "Reward": self.Reward(),
+            "Cost": self.Cost(),
+            "PictureContent": self.PictureContent()
         })
 
         ko.cleanNode(document.getElementById('myModal'));
