@@ -41,6 +41,7 @@ tabel, th, td {
 td {
     color: white;
     text-align:center;
+    /*width: 60px;*/
 }
 
 th {

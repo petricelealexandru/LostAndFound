@@ -1,21 +1,29 @@
 ﻿function ModalDetails() {
     var self = this;
 
+    self.Category = ko.observable();
+    self.Color = ko.observable();
+    self.DateAndTime = ko.observable();
+    self.County = ko.observable();
+    self.City = ko.observable();
     self.Address = ko.observable();
+    self.ContactEmail = ko.observable();
+    self.ContactNumber = ko.observable();
+    self.Description = ko.observable();
+    self.Reward = ko.observable();
 
     self.Initialize = function (data) {
+
+        self.Category(data.Category);
+        self.Color(data.Color);
+        self.DateAndTime(data.DateAndTime);
+        self.County(data.County);
+        self.City(data.City);
         self.Address(data.Address);
-        //self.Category = ko.observable();
-        //self.Color = ko.observable();
-        //self.DateAndTime = ko.observable();
-        //self.County = ko.observable();
-        //self.City = ko.observable();
-        //self.Address = ko.observable();
-        //self.ContactEmail = ko.observable();
-        //self.ContactNumber = ko.observable();
-        //self.Description = ko.observable();
-        //self.Reward = ko.observable();
-        //self.Cost = ko.observable();
+        self.ContactEmail(data.ContactEmail);
+        self.ContactNumber(data.ContactNumber);
+        self.Description(data.Description);
+        self.Reward(data.Reward);
     }
 
     self.Close = function () {
@@ -61,7 +69,18 @@ function ItemListingViewModel() {
         var modalVM = new ModalDetails();
 
         modalVM.Initialize({
+
+            "Category": self.Category,
+            "Color": self.Color,
+            "DateAndTime": self.DateAndTime,
+            "County": self.County,
+            "City": self.City,
             "Address": self.Address,
+            "ContactEmail": self.ContactEmail,
+            "ContactNumber": self.ContactNumber,
+            "Description": self.Description,
+            "Reward": self.Reward,
+            "Cost": self.Cost
             //"Address": self.Address()
             //"Address": self.Address()
             //"Address": self.Address()

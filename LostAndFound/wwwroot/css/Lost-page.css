@@ -66,11 +66,11 @@ body {
     outline: none;
     padding: 0 5px;
     background-color: #2B3138;
+    color: white;
 }
 
-.label {
-    color: #2B3138;
-    opacity: 0.9;
+.label-reward {
+    color: white;
 }
 
 .upload-photo {
@@ -98,6 +98,7 @@ body {
 .checkbox {
     cursor: pointer;
     margin-left: 0;
+    color: white;
 }
 
 
