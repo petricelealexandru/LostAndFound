@@ -24,7 +24,6 @@ body {
 
 .formular-box 
 {
-    height: 460px;
     width: 630px;
     background-color: #202329;
     border-radius: 18px;
@@ -50,6 +49,7 @@ body {
 
 .input {
     width: 45%;
+    height: 25px;
     margin-bottom: 20px;
     border: none;
     border-bottom: 1px solid #2B3138;
@@ -61,9 +61,7 @@ body {
 
 .input-cost {
     width: 126px;
-    margin-bottom: 20px;
     border: none;
-    border-bottom: 1px solid #2B3138;
     outline: none;
     padding: 0 5px;
     background-color: #2B3138;

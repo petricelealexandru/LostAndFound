@@ -8,50 +8,47 @@
         "Text": "Animal"
     }]
 
-// Get the modal
-var modal = document.getElementById("myModal");
+ko.bindingHandlers.dateTimePicker = {
+    init: function (element, valueAccessor, allBindingsAccessor) {
+        //initialize datepicker with some optional options
+        var options = allBindingsAccessor().dateTimePickerOptions || {};
+        $(element).datetimepicker(options);
 
-// Get the button that opens the modal
-//ko.bindingHandlers.datepicker = {
-//    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-//        //initialize datepicker with some optional options
-//        var options = {
-//            format: 'DD/MM/YYYY HH:mm',
-//            defaultDate: valueAccessor()()
-//        };
+        //when a user changes the date, update the view model
+        // ko.utils.registerEventHandler(element, "dp.change", function (event) {
+        //     var value = valueAccessor();
+        //     if (ko.isObservable(value)) {
+        //         if ((event.date != null || !event.date) && (event.date instanceof Date)) {
+        //             value(event.date.toDate());
+        //         } else {
+        //             value(event.date);
+        //         }
+        //     }
+        // });
 
-//        if (allBindingsAccessor() !== undefined) {
-//            if (allBindingsAccessor().datepickerOptions !== undefined) {
-//                options.format = allBindingsAccessor().datepickerOptions.format !== undefined ? allBindingsAccessor().datepickerOptions.format : options.format;
-//            }
-//        }
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+            var picker = $(element).data("DateTimePicker");
+            if (picker) {
+                picker.destroy();
+            }
+        });
+    },
+    update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 
-//        $(element).datetimepicker(options);
-//        var picker = $(element).data('datetimepicker');
+        var picker = $(element).data("DateTimePicker");
+        //when the view model is updated, update the widget
+        if (picker) {
+            var koDate = ko.utils.unwrapObservable(valueAccessor());
 
-//        //when a user changes the date, update the view model
-//        ko.utils.registerEventHandler(element, "dp.change", function (event) {
-//            var value = valueAccessor();
-//            if (ko.isObservable(value)) {
-//                value(event.date);
-//            }
-//        });
+            //in case return from server datetime i am get in this form for example /Date(93989393)/ then fomat this
+            koDate = (typeof (koDate) !== 'object') && koDate ? new Date(parseFloat(koDate.replace(/[^0-9]/g, ''))) : koDate;
 
-//        var defaultVal = $(element).val();
-//        var value = valueAccessor();
-//        value(moment(defaultVal, options.format));
-//    },
-//    update: function (element, valueAccessor) {
-//        var widget = $(element).data("datepicker");
-//        //when the view model is updated, update the widget
-//        if (widget) {
-//            widget.date = ko.utils.unwrapObservable(valueAccessor());
-//            if (widget.date) {
-//                widget.setValue();
-//            }
-//        }
-//    }
-//};
+            if (koDate)
+                picker.date(koDate);
+        }
+    }
+};
+
 
 function selectTab(evt, cityName) {
     var i, tabcontent, tablinks;

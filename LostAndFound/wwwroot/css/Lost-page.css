@@ -23,7 +23,6 @@ body {
 }
 
 .formular-box {
-    height: 460px;
     width: 630px;
     background-color: #202329;
     border-radius: 18px;
@@ -57,12 +56,9 @@ body {
     background-color: #2B3138;
 }
 
-.input-cost 
-{
+.input-cost {
     width: 188px;
-    margin-bottom: 20px;
     border: none;
-    border-bottom: 1px solid #2B3138;
     outline: none;
     padding: 0 5px;
     background-color: #2B3138;
@@ -91,14 +87,26 @@ body {
     cursor: pointer;
 }
 
-.send-button:hover {
-    background-color: #B25800;
-}
+    .send-button:hover {
+        background-color: #B25800;
+    }
 
 .checkbox {
     cursor: pointer;
     margin-left: 0;
     color: white;
+    margin-top: 0px !important;
+    margin-right: 10px !important;
 }
 
+.reward {
+    display: flex;
+    align-items: center;
+    width: 45%;
+    height: 25px;
+}
 
+.label-reward {
+    margin-bottom: 0px !important;
+    margin-right: 10px!important;
+}

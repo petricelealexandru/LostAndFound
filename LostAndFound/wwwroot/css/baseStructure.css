@@ -221,3 +221,12 @@ p {
         border-radius: 20px;
         border: 3px solid #2B3138;
     }
+
+.insert-photo {
+    display: flex;
+    align-items: center;
+}
+
+    .insert-photo #preview-picture {
+        margin-right: 20px;
+    }

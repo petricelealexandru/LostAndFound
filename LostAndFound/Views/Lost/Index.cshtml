@@ -6,7 +6,10 @@
                 <div class="section-input">
                     <select placeholder="Category" class="input" data-bind="options: Parent.AvailableCategories, value: CategoryId,optionsValue: 'Id',optionsText: 'Text'" />
                     <input type="text" placeholder="Color" class="input" data-bind="value: Color">
-                    @*<input type="text" data-bind="datepicker: DateAndTime" />*@
+                    <input type="text" class="input" data-bind="dateTimePicker: DateAndTime,
+                                      dateTimePickerOptions: {
+                                        format: 'MM/DD/YYYY HH:mm',
+                                      }" />
                     <select placeholder="County" class="input" data-bind="options: Parent.AvailableCounties, value: CountyId,optionsValue: 'Id',optionsText: 'Text'" />
                     <input type="text" placeholder="City" class="input" data-bind="value: City">
                     <input type="text" placeholder="Address" class="input" data-bind="value: Address">
