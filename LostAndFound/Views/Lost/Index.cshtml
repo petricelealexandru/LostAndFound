@@ -57,6 +57,7 @@
             self.PictureContent = ko.observable();
 
             self.readURL = function (input, vm, element) {
+                debugger
                 if (element.currentTarget.files && element.currentTarget.files[0]) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
@@ -130,7 +131,7 @@
 
                 if (postModel.Reward == true) {
                     if (!numberRegex.test(postModel.RewardCost)) {
-                        toastr.error('Please Correct Number!');
+                        toastr.error('The reward can be just a number!');
                         return;
                     }
                 }
