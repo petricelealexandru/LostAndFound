@@ -14,7 +14,6 @@
     self.PictureContent = ko.observable();
 
     self.Initialize = function (data) {
-
         self.Category(data.Category);
         self.Color(data.Color);
         self.DateAndTime(data.DateAndTime);
@@ -68,12 +67,10 @@ function ItemListingViewModel() {
     }
 
     self.ShowModal = function () {
-        debugger
 
         var modalVM = new ModalDetails();
 
         modalVM.Initialize({
-
             "Category": self.Category(),
             "Color": self.Color(),
             "DateAndTime": self.DateAndTime(),
