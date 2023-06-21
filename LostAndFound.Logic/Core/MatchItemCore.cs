@@ -1,8 +1,6 @@
 ﻿using LostAndFound.Database.Base;
 using LostAndFound.Logic.Base;
 using LostAndFound.Logic.Models.PostModels;
-using Microsoft.VisualBasic;
-using System.Security.Cryptography.X509Certificates;
 using DatabaseModel = LostAndFound.Database.Models;
 
 namespace LostAndFound.Logic.Core
@@ -36,6 +34,31 @@ namespace LostAndFound.Logic.Core
                                         }).ToList();
 
                 return CustomResponse.Success(list);
+            }
+        }
+
+        public static CustomResponse CreateMatch(CreateMatchModel model)
+        {
+            using (var unitOfWork = new RepoUnitOfWork(beginTransaction: true))
+            using (var itemMatchRepo = unitOfWork.Repository<DatabaseModel.ItemMatch>())
+            {
+                var itemMatchDAL = new DatabaseModel.ItemMatch()
+                {
+                    Id = Guid.NewGuid(),
+                    ItemFoundId = model.FoundItemId,
+                    ItemLostId = model.LostItemId,
+                    MatchedAt = DateTime.Now
+                };
+
+                itemMatchDAL = itemMatchRepo.Create(itemMatchDAL);
+                if (itemMatchDAL == null)
+                {
+                    unitOfWork.RollbackTransaction();
+                    return CustomResponse.Error();
+                }
+
+                unitOfWork.CommitTransaction();
+                return CustomResponse.Success();
             }
         }
     }

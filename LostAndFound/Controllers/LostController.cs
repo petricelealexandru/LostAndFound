@@ -26,5 +26,13 @@ namespace LostAndFound.Controllers
             var response = LostItemCore.GetLostItems();
             return Json(response);
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public virtual JsonResult GetFoundItemsForMatch(Guid lostItemId)
+        {
+            var response = LostItemCore.GetFoundItemsForMatch(lostItemId);
+            return Json(response);
+        }
     }
 }

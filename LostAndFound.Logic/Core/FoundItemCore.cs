@@ -47,7 +47,39 @@ namespace LostAndFound.Logic.Core
             using (var unitOfWork = new RepoUnitOfWork())
             using (var itemFoundRepo = unitOfWork.Repository<DatabaseModel.ItemFound>())
             {
-                var list = itemFoundRepo.GetListQuery(item => item.Id != Guid.Empty)
+                var list = itemFoundRepo.GetListQuery(item => item.ItemMatches == null ||
+                                                              item.ItemMatches.Count == 0)
+                                        .OrderByDescending(item => item.FoundAt)
+                                        .Select(entity => new ItemReturnModel()
+                                        {
+                                            Id = entity.Id,
+                                            ItemType = entity.Item.ItemType.Type,
+                                            City = entity.Item.City,
+                                            County = entity.Item.County.Name,
+                                            Color = entity.Item.Color,
+                                            Address = entity.Item.Address,
+                                            Description = entity.Item.Description,
+                                            ContactNumber = entity.Item.ContactNumber,
+                                            ContactEmail = entity.Item.ContactEmail,
+                                            DateAndTime = entity.FoundAt.ToString("dd-MM-yyyy HH:mm"),
+                                            PictureContent = entity.Item.ImageTables.First() != null ?
+                                                             entity.Item.ImageTables.First().ImageData :
+                                                             String.Empty,
+                                        }).ToList();
+
+                return CustomResponse.Success(list);
+            }
+        }
+
+        public static CustomResponse GetFoundItemsForMatch(DatabaseModel.ItemLost itemLost)
+        {
+            using (var unitOfWork = new RepoUnitOfWork())
+            using (var itemFoundRepo = unitOfWork.Repository<DatabaseModel.ItemFound>())
+            {
+                var list = itemFoundRepo.GetListQuery(item => item.Item.ItemTypeId == itemLost.Item.ItemTypeId &&
+                                                              item.Item.CountyId == itemLost.Item.CountyId &&
+                                                              item.Item.City.ToLower() == itemLost.Item.City.ToLower() &&
+                                                              item.Item.Color.ToLower() == itemLost.Item.Color.ToLower())
                                         .OrderByDescending(item => item.FoundAt)
                                         .Select(entity => new ItemReturnModel()
                                         {

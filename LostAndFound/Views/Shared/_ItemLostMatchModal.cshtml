@@ -1,0 +1,39 @@
+﻿<!-- The Modal -->
+<div id="itemLostMatchModal" class="custom-modal">
+    <span class="close" data-bind="click: Close">&times;</span>
+    <div class="custom-modal-content-matach">
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Color</th>
+                    <th>Date and time</th>
+                    <th>County</th>
+                    <th>City</th>
+                    <th>Adress</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: Items">
+                <tr>
+                    <td data-bind="text: Category">Obiect</td>
+                    <td data-bind="text: Color">Color</td>
+                    <td data-bind="text: DateAndTime">21-06-2023 17:59</td>
+                    <td data-bind="text: County">Timi?</td>
+                    <td data-bind="text: City">City</td>
+                    <td data-bind="text: Address">Address</td>
+                    <td data-bind="text: ContactNumber">0741666084</td>
+                    <td data-bind="text: ContactEmail">email@yahoo.com</td>
+                    <td data-bind="text: Description">Desc</td>
+                    <td>
+                        <button data-bind="click: ShowModal"><img src="/img/eye.png"></button>
+                        <button data-bind="click: SaveMatch"><img src="/img/check.png"></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

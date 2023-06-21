@@ -1,4 +1,25 @@
-﻿function ModalDetails() {
+﻿function ModalItemLostMatch() {
+    var self = this;
+
+    self.Items = ko.observableArray();
+    self.LostItemId = ko.observable();
+
+    self.Initialize = function (items) {
+        var itemsListVM = [];
+        for (var i = 0; i < items.length; i++) {
+            var itemVM = new ItemListingViewModel(self);
+            itemVM.Initialize(items[i]);
+            itemsListVM.push(itemVM);
+        }
+        self.Items(itemsListVM);
+    }
+
+    self.Close = function () {
+        $("#itemLostMatchModal").css("display", "none");
+    }
+}
+
+function ModalDetails() {
     var self = this;
 
     self.Category = ko.observable();
@@ -29,13 +50,15 @@
 
     self.Close = function () {
         $("#myModal").css("display", "none");
-
     }
 }
 
-function ItemListingViewModel() {
+function ItemListingViewModel(parent) {
     var self = this;
 
+    self.Parent = parent;
+
+    self.Id = ko.observable();
     self.Category = ko.observable();
     self.Color = ko.observable();
     self.DateAndTime = ko.observable();
@@ -50,6 +73,7 @@ function ItemListingViewModel() {
     self.PictureContent = ko.observable();
 
     self.Initialize = function (data) {
+        self.Id(data.Id);
         self.Category(data.ItemType);
         self.Color(data.Color);
         if (data.DateAndTime) {
@@ -89,6 +113,28 @@ function ItemListingViewModel() {
         ko.applyBindings(modalVM, document.getElementById('myModal'));
 
         $("#myModal").css("display", "block");
+    }
+
+    self.SaveMatch = function () {
+        var lostItemId = self.Parent.LostItemId();
+        var foundItemId = self.Id();
+
+        var postModel = {
+            "FoundItemId": foundItemId,
+            "LostItemId": lostItemId
+        }
+
+        var url = "/CreateMatch";
+        ajaxHelper.post(url, postModel,
+            function (result) {
+                toastr.success('Successfully!');
+                setTimeout(function () {
+                    window.location.href = "/";
+                }, 1000);
+            },
+            function (err) {
+                toastr.error('Error!');
+            });
     }
 }
 

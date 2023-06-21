@@ -57,7 +57,6 @@
             self.PictureContent = ko.observable();
 
             self.readURL = function (input, vm, element) {
-                debugger
                 if (element.currentTarget.files && element.currentTarget.files[0]) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
@@ -140,9 +139,29 @@
                 ajaxHelper.post(url, postModel,
                     function (result) {
                         toastr.success('Successfully!');
+                        self.GetMatchItems(result.Data);
                     },
                     function (err) {
                         toastr.error('Error!');
+                    });
+            }
+
+            self.GetMatchItems = function(lostItemId){
+                var url = "/GetFoundItemsForMatch?lostItemId=" + lostItemId;
+                ajaxHelper.getWithoutData(url,
+                    function (result) {
+
+                        var items = result.Data;
+
+                        var modalVM = new ModalItemLostMatch();
+                        modalVM.Initialize(items);
+                        modalVM.LostItemId(lostItemId);
+
+                        ko.cleanNode(document.getElementById('itemLostMatchModal'));
+                        ko.applyBindings(modalVM, document.getElementById('itemLostMatchModal'));
+                        $("#itemLostMatchModal").css("display", "block");
+                    },
+                    function (err) {
                     });
             }
 

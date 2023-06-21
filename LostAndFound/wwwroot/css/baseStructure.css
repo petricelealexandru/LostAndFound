@@ -231,3 +231,15 @@ p {
     .insert-photo #preview-picture {
         margin-right: 20px;
     }
+
+.custom-modal-content-matach {
+    background-color: #202329;
+    padding: 20px;
+    height: 400px;
+    width: 800px;
+    position: relative;
+    overflow-y: scroll;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

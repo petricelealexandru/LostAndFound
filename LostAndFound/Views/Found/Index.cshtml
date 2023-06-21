@@ -53,7 +53,6 @@
                 if (element.currentTarget.files && element.currentTarget.files[0]) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        debugger
                         $('#preview-picture').attr('src', e.target.result);
                         self.PictureContent(e.target.result);
                     };
@@ -126,6 +125,9 @@
                 ajaxHelper.post(url, postModel,
                     function (result) {
                         toastr.success('Successfully!');
+                        setTimeout(function () {
+                            window.location.href = "/";
+                        }, 1000);
                     },
                     function (err) {
                         toastr.success('Error!');

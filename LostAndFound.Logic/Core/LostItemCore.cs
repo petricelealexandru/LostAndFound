@@ -39,7 +39,7 @@ namespace LostAndFound.Logic.Core
                 }
 
                 unitOfWork.CommitTransaction();
-                return CustomResponse.Success();
+                return responseCreateLostItem;
             }
         }
 
@@ -48,7 +48,8 @@ namespace LostAndFound.Logic.Core
             using (var unitOfWork = new RepoUnitOfWork())
             using (var itemLostRepo = unitOfWork.Repository<DatabaseModel.ItemLost>())
             {
-                var list = itemLostRepo.GetListQuery(item => item.Id != Guid.Empty)
+                var list = itemLostRepo.GetListQuery(item => item.ItemMatches == null ||
+                                                             item.ItemMatches.Count == 0)
                                        .OrderByDescending(item => item.LostAt)
                                        .Select(entity => new ItemReturnModel()
                                        {
@@ -73,6 +74,25 @@ namespace LostAndFound.Logic.Core
             }
         }
 
+        public static CustomResponse GetFoundItemsForMatch(Guid lostItemId)
+        {
+            using (var unitOfWork = new RepoUnitOfWork())
+            using (var itemLostRepo = unitOfWork.Repository<DatabaseModel.ItemLost>())
+            {
+                var itemLostDAL = itemLostRepo.GetSingle(itemLost => itemLost.Id == lostItemId, new string[] 
+                {
+                    nameof(DatabaseModel.ItemLost.Item),
+                });
+                if (itemLostDAL == null)
+                {
+                    return CustomResponse.Error();
+                }
+
+                var list = FoundItemCore.GetFoundItemsForMatch(itemLostDAL);
+                return list;
+            }
+        }
+
         #endregion
 
         #region private
@@ -92,7 +112,7 @@ namespace LostAndFound.Logic.Core
                 return CustomResponse.Error();
             }
 
-            return CustomResponse.Success();
+            return CustomResponse.Success(itemLostDAL.Id);
         }
 
         #endregion
