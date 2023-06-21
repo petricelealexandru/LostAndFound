@@ -49,7 +49,6 @@ ko.bindingHandlers.dateTimePicker = {
     }
 };
 
-
 function selectTab(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -61,7 +60,9 @@ function selectTab(evt, cityName) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+    if (evt) {
+        evt.currentTarget.className += " active";
+    }
 }
 
 function CountyViewModel() {
@@ -78,4 +79,4 @@ function CountyViewModel() {
 
 var emailRegex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
 var numberRegex = new RegExp(/^\s*[+-]?(\d+|\d*\.\d+|\d+\.\d*)([Ee][+-]?\d+)?\s*$/);
-var phoneNumberRegex = new RegExp (/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+var phoneNumberRegex = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);

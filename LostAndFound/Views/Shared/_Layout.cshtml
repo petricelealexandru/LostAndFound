@@ -64,6 +64,19 @@
                 'showMethod': 'fadeIn',
                 'hideMethod': 'fadeOut',
             }
+
+            if (document.location.pathname == "/") {
+                $("#home-menu").addClass("active");
+            }
+            else if (document.location.pathname == "/lost") {
+                $("#lost-menu").addClass("active");
+            }
+            else if (document.location.pathname == "/found") {
+                $("#found-menu").addClass("active");
+            }
+            else if (document.location.pathname == "/listing") {
+                $("#listing-menu").addClass("active");
+            }
         })
     </script>
 </body>

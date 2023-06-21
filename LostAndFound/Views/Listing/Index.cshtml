@@ -34,7 +34,7 @@
                                 <td data-bind="text: Address"></td>
                                 <td data-bind="text: ContactNumber"></td>
                                 <td data-bind="text: ContactEmail"></td>
-                                <td data-bind="text: Description" ></td>
+                                <td data-bind="text: Description"></td>
                                 <td>
                                     <button data-bind="click: ShowModal"><img src="~/img/eye.png" /></button>
                                 </td>
@@ -124,13 +124,11 @@
         $(document).ready(function () {
 
             listingPageVM.InitializePage();
-
             ko.applyBindings(listingPageVM, document.getElementById('listing-page'));
 
-            //cand se initializeaza pagina trebe sa apelam specific
-            // functia asta face tabul activ o sa intelegi logica daca te uiti
-            //se face un foreach peste elemntele de hmlt si se pune style ul dispaly active ca by default este display none
             selectTab(event, 'Lost');
+            $($(".tab").children()[0]).addClass("active");
+
         })
     </script>
 }

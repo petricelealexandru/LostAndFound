@@ -46,8 +46,7 @@ navigation-left {
     height: 80px;
     width: 80px;
     align-items: center;
-    background-color: #2B3138;
-    color: #CC633B;
+    color: white;
     border: none;
     font-style: border;
     cursor: pointer;
@@ -56,7 +55,9 @@ navigation-left {
     text-decoration: none;
 }
 
-
+    .nav-item.active {
+        color: #CC633B;
+    }
 
 .footer {
     height: 170px;
