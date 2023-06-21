@@ -56,7 +56,7 @@ namespace LostAndFound.Database.Base
 
         }
 
-        //aici nu inteleg
+
         public TEntity GetSingle(Expression<Func<TEntity, bool>> expression, string[] navigationProperties = null)
         {
             var query = _context.Set<TEntity>().Where(expression);
