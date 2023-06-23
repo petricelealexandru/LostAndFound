@@ -13,5 +13,7 @@
         public bool? Reward { get; set; }
         public double? Cost { get; set; }
         public string PictureContent { get; set; }
+
+        public DateTime DateAndTime { get; set; }
     }
 }

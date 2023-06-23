@@ -31,7 +31,7 @@ namespace LostAndFound.Logic.Core
                     return CustomResponse.Error();
                 }
 
-                var responseCreateLostItem = CreateLostEntry(itemLostRepo, responseCreateItem.Id);
+                var responseCreateLostItem = CreateLostEntry(itemLostRepo, responseCreateItem.Id, model.DateAndTime);
                 if (!CustomResponse.IsSuccessful(responseCreateLostItem))
                 {
                     unitOfWork.RollbackTransaction();
@@ -97,13 +97,13 @@ namespace LostAndFound.Logic.Core
 
         #region private
 
-        public static CustomResponse CreateLostEntry(IRepository<DatabaseModel.ItemLost> itemLostRepo, Guid itemId)
+        public static CustomResponse CreateLostEntry(IRepository<DatabaseModel.ItemLost> itemLostRepo, Guid itemId, System.DateTime LostAt)
         {
             var itemLostDAL = new DatabaseModel.ItemLost()
             {
                 Id = Guid.NewGuid(),
                 ItemId = itemId,
-                LostAt = DateTime.Now
+                LostAt = LostAt
             };
 
             itemLostDAL = itemLostRepo.Create(itemLostDAL);
