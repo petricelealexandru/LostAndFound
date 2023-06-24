@@ -114,7 +114,7 @@ namespace LostAndFound.Logic.Core
             {
                 Id = Guid.NewGuid(),
                 ItemId = itemId,
-                FoundAt = DateTime.Now
+                FoundAt = lostAtParsed
             };
 
             itemFoundDAL = itemFoundRepo.Create(itemFoundDAL);
