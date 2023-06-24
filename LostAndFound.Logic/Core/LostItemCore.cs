@@ -2,6 +2,7 @@
 using LostAndFound.Logic.Base;
 using LostAndFound.Logic.Models.PostModels;
 using Microsoft.VisualBasic;
+using System.Globalization;
 using DatabaseModel = LostAndFound.Database.Models;
 
 namespace LostAndFound.Logic.Core
@@ -97,13 +98,14 @@ namespace LostAndFound.Logic.Core
 
         #region private
 
-        public static CustomResponse CreateLostEntry(IRepository<DatabaseModel.ItemLost> itemLostRepo, Guid itemId, System.DateTime LostAt)
+        public static CustomResponse CreateLostEntry(IRepository<DatabaseModel.ItemLost> itemLostRepo, Guid itemId, string LostAt)
         {
+            DateTime lostAtParsed = DateTime.ParseExact(LostAt, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
             var itemLostDAL = new DatabaseModel.ItemLost()
             {
                 Id = Guid.NewGuid(),
                 ItemId = itemId,
-                LostAt = LostAt
+                LostAt = lostAtParsed
             };
 
             itemLostDAL = itemLostRepo.Create(itemLostDAL);

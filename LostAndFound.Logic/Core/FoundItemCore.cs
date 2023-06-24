@@ -1,6 +1,7 @@
 ﻿using LostAndFound.Database.Base;
 using LostAndFound.Logic.Base;
 using LostAndFound.Logic.Models.PostModels;
+using System.Globalization;
 using DatabaseModel = LostAndFound.Database.Models;
 
 namespace LostAndFound.Logic.Core
@@ -30,7 +31,7 @@ namespace LostAndFound.Logic.Core
                     return CustomResponse.Error();
                 }
 
-                var responseCreateFoundItem = CreateFoundEntry(itemFoundRepo, responseCreateItem.Id);
+                var responseCreateFoundItem = CreateFoundEntry(itemFoundRepo, responseCreateItem.Id, model.DateAndTime);
                 if (!CustomResponse.IsSuccessful(responseCreateFoundItem))
                 {
                     unitOfWork.RollbackTransaction();
@@ -106,8 +107,9 @@ namespace LostAndFound.Logic.Core
 
         #region private
 
-        public static CustomResponse CreateFoundEntry(IRepository<DatabaseModel.ItemFound> itemFoundRepo, Guid itemId)
+        public static CustomResponse CreateFoundEntry(IRepository<DatabaseModel.ItemFound> itemFoundRepo, Guid itemId, string LostAt)
         {
+            DateTime lostAtParsed = DateTime.ParseExact(LostAt, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
             var itemFoundDAL = new DatabaseModel.ItemFound()
             {
                 Id = Guid.NewGuid(),

@@ -45,7 +45,7 @@
 
             self.CategoryId = ko.observable();
             self.Color = ko.observable();
-            self.DateAndTime = ko.observable(new Date());
+            self.DateAndTime = ko.observable();
             self.CountyId = ko.observable();
             self.City = ko.observable();
             self.Address = ko.observable();
@@ -102,7 +102,6 @@
 
             self.Save = function () {
                 var postModel = self.CollectData();
-
                 if (!postModel.Color || postModel.Color === "") {
                     toastr.error('Please fill Color input!');
                     return;
@@ -178,6 +177,7 @@
                     "Reward": self.ItemVM().Reward(),
                     "RewardCost": self.ItemVM().RewardCost(),
                     "PictureContent": self.ItemVM().PictureContent(),
+                    "DateAndTime": moment(self.ItemVM().DateAndTime()).format("YYYY-MM-DD HH:mm")
                 }
             }
         }

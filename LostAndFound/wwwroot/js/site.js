@@ -14,17 +14,17 @@ ko.bindingHandlers.dateTimePicker = {
         var options = allBindingsAccessor().dateTimePickerOptions || {};
         $(element).datetimepicker(options);
 
-        //when a user changes the date, update the view model
-        // ko.utils.registerEventHandler(element, "dp.change", function (event) {
-        //     var value = valueAccessor();
-        //     if (ko.isObservable(value)) {
-        //         if ((event.date != null || !event.date) && (event.date instanceof Date)) {
-        //             value(event.date.toDate());
-        //         } else {
-        //             value(event.date);
-        //         }
-        //     }
-        // });
+       //when a user changes the date, update the view model
+         ko.utils.registerEventHandler(element, "dp.change", function (event) {
+             var value = valueAccessor();
+             if (ko.isObservable(value)) {
+                 if ((event.date != null || !event.date) && (event.date instanceof Date)) {
+                     value(event.date.toDate());
+                 } else {
+                     value(event.date);
+                 }
+             }
+         });
 
         ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
             var picker = $(element).data("DateTimePicker");
@@ -34,7 +34,6 @@ ko.bindingHandlers.dateTimePicker = {
         });
     },
     update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
-
         var picker = $(element).data("DateTimePicker");
         //when the view model is updated, update the widget
         if (picker) {
