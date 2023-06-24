@@ -11,7 +11,7 @@
         public string ContactNumber { get; set; }
         public string ContactEmail { get; set; }
         public bool? Reward { get; set; }
-        public double? Cost { get; set; }
+        public double? RewardCost { get; set; }
         public string PictureContent { get; set; }
         public string DateAndTime { get; set; }
     }

@@ -21,7 +21,7 @@ namespace LostAndFound.Logic.Core
                 ContactNumber = model.ContactNumber,
                 ContactEmail = model.ContactEmail,
                 Reward = model.Reward,
-                Cost = model.Cost,
+                Cost = model.RewardCost,
             };
 
             itemDAL = itemRepo.Create(itemDAL);

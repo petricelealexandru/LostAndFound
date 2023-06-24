@@ -32,6 +32,7 @@ function ModalDetails() {
     self.ContactNumber = ko.observable();
     self.Description = ko.observable();
     self.Reward = ko.observable();
+    self.Cost = ko.observable();
     self.PictureContent = ko.observable();
 
     self.Initialize = function (data) {
@@ -45,6 +46,7 @@ function ModalDetails() {
         self.ContactNumber(data.ContactNumber);
         self.Description(data.Description);
         self.Reward(data.Reward);
+        self.Cost(data.Cost);
         self.PictureContent(data.PictureContent);
     }
 
